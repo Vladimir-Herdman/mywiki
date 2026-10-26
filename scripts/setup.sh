@@ -24,7 +24,10 @@ main() {
 
         printf "%b%s%b: %s\n" "$GREEN" "DOWNLOAD" "$NC" "$libgit"
         git clone "$libgit" "mywikicurlib" > /dev/null 2>&1
-        mkdir -p "$libname"
+        (
+            cd mywikicurlib || return 1
+            git checkout "$libhash" > /dev/null 2>&1
+        ) || return 1
         printf "%b%s%b: %s\n" "$GREEN" "SETUP LIB" "$NC" "$libname"
         if ! $libname > /dev/null 2>&1; then
             printf "%bERROR%b: Issue setting up lib '%s' for program.\n" "$RED" "$NC" "$libname"
