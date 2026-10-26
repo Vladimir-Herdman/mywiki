@@ -9,6 +9,7 @@ main() {
 
     rm -rf libs/*
     mkdir -p libs
+    touch libs/.gitkeep
 
     return 0
 }

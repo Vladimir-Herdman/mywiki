@@ -42,7 +42,7 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 	@$(CC) $(CFLAGS) $(CDEFS) -c $< -o $@
 
 #Commands
-.PHONY: clean debug run
+.PHONY: clean debug libs run
 clean: 
 	@printf '  $(RED)rm -r$(NC) %s %s\n' $(BUILD_DIR)/ $(TARGET_DIR)/
 	@rm -r build/ bin/ 2>/dev/null || true
@@ -51,6 +51,10 @@ debug:
 	@$(MAKE) clean
 	@$(MAKE) DEBUG=1
 	@gdb bin/main
+
+libs:
+	@./scripts/clean.sh
+	@./scripts/setup.sh
 
 run: $(TARGET_DIR)/$(TARGET_EXEC)
 	@./$(TARGET_DIR)/$(TARGET_EXEC)

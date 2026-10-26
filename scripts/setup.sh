@@ -9,6 +9,8 @@ source "$SCRIPTPATH/required.sh" #available: TOOLS check_required_tools()
 source "$SCRIPTPATH/colors.sh"
 
 main() {
+    mkdir -p "$SCRIPTPATH/../libs"
+
     local libgit libname libhash i
     if ! check_required_tools; then
         return 1
